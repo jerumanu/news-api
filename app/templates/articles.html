@@ -17,18 +17,8 @@
         <!-- Popular News -->
         <h3> Popular News</h3>
         <ul>
-            {{ macro.displayNewsList(popularity)}}
+            {{ macro.displayNewsList(focus)}}
         </ul>
-    <!-- Upcoming News  -->
-    <h3> Bit Coin News </h3>
-    <ul>
-        {{ macro.displayNewsList(bitcoin)}}
-    </ul>
-    <!-- Now showing News -->
-    <h3>Business News</h3>
-    <ul>
-        {{ macro.displayNewsList(business)}}
-    </ul>
     <!-- Now showing News -->
     <h3>Tech Crunch News</h3>
     <ul>
@@ -38,7 +28,7 @@
     <!-- Now showing News -->
     <h3>Wall Street News</h3>
     <ul>
-        {{ macro.displayNewsList(wall_street)}}
+        {{ macro.displayNewsList(india)}}
     </ul>
 </div>
 {% endblock%}
