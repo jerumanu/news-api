@@ -2,7 +2,7 @@
 {% for source_row in source_list |batch(4)%}
 <div class="row">
   {% for sources in source_row %}
-  <div class="col-md-6">
+  <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading" id="sourcename">
         <a href="/sources/{{sources.id}}">
