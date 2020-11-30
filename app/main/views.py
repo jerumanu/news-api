@@ -1,39 +1,24 @@
-from flask import render_template,request,redirect,url_for
+from flask import render_template, request, redirect, url_for
 from . import main
-from ..requests import get_news,get_news,search_news,get_article
-
-from ..models import Review
-Review=Review
-# Views
+from ..requests import get_sources, get_articles
+from ..models import Sources
+# views
 @main.route('/')
 def index():
     '''
-    View root page function that returns the index page and its data
+    view root page function that returns the index the page and its data
     '''
-    # Getting news sources
-    popularity = get_news('popularity')
-    bitcoin = get_news('bitcoin')
-    business = get_news('business')
-    techcrunch = get_news('techcrunch')
-    wall_street = get_news('wsj')
-    title = 'Home - Welcome to The best News Review Website Online'
-    search_news = request.args.get('news_query')
-    if search_news:
-        return redirect(url_for('search', category_name = search_news))
-    else:
-        return render_template('index.html', title = title, popularity = popularity, bitcoin = bitcoin, business = business, techcrunch = techcrunch, wall_street = wall_street )
-@main.route('/new/articles/')
-def articles():
+    sources = get_sources('sources')
+    sports_sources = get_sources('sports')
+    technology_sources = get_sources('technology')
+    entertainment_sources = get_sources('entertainment')
+    title = "Home - News Highlighter"
+    return render_template('index.html', title=title, sources=sources, sports_sources=sports_sources, technology_sources=technology_sources, entertainment_sources=entertainment_sources)
+@main.route('/sources/<id>')
+def articles(id):
     '''
-    View root page function that returns the index page and its data
+    view articles page
     '''
-    # Getting news sources
-    focus = get_news('focus')
-    techcrunch = get_news('techcrunch')
-    india = get_news('the-times-of-india')
-    title = 'Home - Welcome to The best News Review Website Online'
-    search_news = request.args.get('news_query')
-    if search_news:
-        return redirect(url_for('search', category_name = search_news))
-    else:
-        return render_template('articles.html', title = title, focus = focus, techcrunch = techcrunch, india = india )
+    articles = get_articles(id)
+    title = f'NH | {id}'
+    return render_template('articles.html', title=title, articles=articles)
